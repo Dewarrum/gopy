@@ -28,6 +28,10 @@ func createHttpRouter(s3Client *s3.Client) *gin.Engine {
 	router := gin.Default()
 	router.MaxMultipartMemory = 8 << 20
 
+	router.GET("/", func(c *gin.Context) {
+		c.JSON(200, gin.H{"message": "Hello World!"})
+	})
+
 	router.GET("/download/:key", func(c *gin.Context) {
 		log.Printf("Downloading %s", c.Param("key"))
 		key := c.Param("key")
@@ -73,10 +77,6 @@ func createHttpRouter(s3Client *s3.Client) *gin.Engine {
 		}
 
 		c.JSON(200, gin.H{"key": key.String()})
-	})
-
-	router.GET("/", func(c *gin.Context) {
-		c.JSON(200, gin.H{"message": "Hello World!"})
 	})
 
 	return router
