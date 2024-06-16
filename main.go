@@ -17,9 +17,6 @@ func createS3Client(accessKeyID, secretAccessKey, region, endpointURL string) *s
 		Credentials:  credentials.NewStaticCredentialsProvider(accessKeyID, secretAccessKey, ""),
 		Region:       region,
 		BaseEndpoint: &endpointURL,
-		EndpointOptions: s3.EndpointResolverOptions{
-			DisableHTTPS: true,
-		},
 		UsePathStyle: true,
 	})
 }
