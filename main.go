@@ -75,6 +75,10 @@ func createHttpRouter(s3Client *s3.Client) *gin.Engine {
 		c.JSON(200, gin.H{"key": key.String()})
 	})
 
+	router.GET("/", func(c *gin.Context) {
+		c.JSON(200, gin.H{"message": "Hello World!"})
+	})
+
 	return router
 }
 
